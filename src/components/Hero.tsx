@@ -46,7 +46,7 @@ export default function Hero({ started }: { started: boolean }) {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/creatives/creative-02.jpeg"
+            src="/creatives/creative-27.jpeg"
             alt="Featured creative"
             className="h-full w-full object-cover"
           />
