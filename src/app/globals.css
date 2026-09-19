@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #06060c;
+  --bg-soft: #0b0b16;
+  --ink: #eef0ff;
+  --indigo: #5a4bff;
+  --blue: #1423bb;
+  --violet: #8b7bff;
+  --deep: #141a7a;
+  --line: rgba(238, 240, 255, 0.12);
+  --muted: rgba(238, 240, 255, 0.55);
+  --grad: radial-gradient(120% 120% at 20% 10%, #2a1b6e 0%, #141a7a 40%, #5a4bff 78%, #06060c 100%);
+  --grad-text: linear-gradient(100deg, #8b7bff 0%, #5a4bff 45%, #3d5bff 100%);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-ink: var(--ink);
+  --color-indigo: var(--indigo);
+  --color-blue: var(--blue);
+  --color-violet: var(--violet);
+  --color-line: var(--line);
+  --color-muted: var(--muted);
+}
+
+html {
+  scroll-behavior: initial;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--indigo);
+  color: #fff;
+}
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* Display type */
+.font-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+
+.text-outline {
+  -webkit-text-stroke: 1.5px var(--ink);
+  color: transparent;
+}
+.text-outline-indigo {
+  -webkit-text-stroke: 1.5px var(--violet);
+  color: transparent;
+}
+.text-gradient {
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Ambient gradient blobs */
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+/* Grain */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 90;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 8s steps(10) infinite;
+}
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -8%); }
+  30% { transform: translate(3%, -12%); }
+  50% { transform: translate(9%, 4%); }
+  70% { transform: translate(-7%, 9%); }
+  90% { transform: translate(4%, 6%); }
+}
+
+/* Custom cursor */
+@media (pointer: fine) {
+  .cursor-none-fine, .cursor-none-fine * { cursor: none !important; }
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee var(--marquee-duration, 30s) linear infinite;
+}
+
+/* Card hover */
+.card-img { transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1); }
+.group:hover .card-img { transform: scale(1.06); }
