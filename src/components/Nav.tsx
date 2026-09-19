@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 
-const links = ["Work", "Services", "Studio", "Contact"];
+const links = ["Work", "Creatives", "Services", "Studio", "Contact"];
 
 export default function Nav({ visible }: { visible: boolean }) {
   return (
